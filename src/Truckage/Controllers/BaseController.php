@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Controllers;
+namespace src\Truckage\Controllers;
 
 use Psr\Container\ContainerInterface;
 

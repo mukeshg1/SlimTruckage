@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Controllers;
+namespace src\Truckage\Controllers;
 
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -9,8 +9,11 @@ class RegisterController extends BaseController
 {
 	public function register(Request $request, Response $response)
 	{
+		// return 'Mukesh';
 		// Fetching filemaker connection from container 'db'
 		$fm = $this->container->get('db');
+
+		// $this->logger->info("Slim-Skeleton '/' route");
 		
 		// Receiving values from Angular and assigning it to a variable
 		$name = $request->getParsedBody()['name'];

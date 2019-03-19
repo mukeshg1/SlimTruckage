@@ -21,7 +21,7 @@ $container['logger'] = function ($c) {
 $container['db'] = function ($c) {
 	$settings = $c->get('settings')['db'];
 
-	require_once ('C:\xampp\htdocs\FileMakerCWP/FileMaker.php');
+	require_once __DIR__ . '/../FileMakerCWP/FileMaker.php';
 
 	$fm = new FileMaker();
 	$fm->setProperty('database', $settings['database']);
@@ -32,5 +32,5 @@ $container['db'] = function ($c) {
 };
 
 $container['RegisterController'] = function ($c) {
-	return new \src\Controllers\RegisterController($c);
+	return new \src\Truckage\Controllers\RegisterController($c);
 };
