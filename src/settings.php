@@ -19,9 +19,15 @@ return [
         // Database setting
         'db' => [
             'host' => '172.16.9.42',
-            'database' => 'TruckageDatabase',
+            'database' => 'industrial-transport',
+            // 'database' => 'TruckageDatabase',
             'username' => 'admin',
             'password' => 'mindfire',
+        ],
+
+        //jwt settings
+        'jwt'=>[
+            'secret' => 'truckage'
         ],
     ],
 ];

@@ -7,6 +7,7 @@ use Slim\Http\Response;
 
 $app->post('/api/register', \RegisterController::class . ':register');
 
+$app->post('/api/login', \LoginController::class . ':Login');
 
 
 

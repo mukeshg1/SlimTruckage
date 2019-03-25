@@ -34,3 +34,10 @@ $container['db'] = function ($c) {
 $container['RegisterController'] = function ($c) {
 	return new \src\Truckage\Controllers\RegisterController($c);
 };
+
+$container['LoginController'] = function ($c) {
+    return new src\Truckage\Controllers\LoginController($c);
+};
+$container['LoginService'] = function ($c) {
+    return new src\Truckage\Services\LoginService($c);
+};
