@@ -19,11 +19,15 @@ class LoginController {
 		$email = $request->getParsedBody()['username'];
 	    $password = $request->getParsedBody()['password'];
 
-		if ($email == "mindfire@email.com" && $password == "mindfire")
-		{
-			$token = JWT::encode(['id' => 1, 'email' => "abc"], $this->settings['jwt']['secret'], "HS256");
+	    if (empty($email) or empty($password)) {
+	    	return $response->withJSON(['error' => true, 'message' => 'Enter your Email or Password.'], 200);
+	    }
+	    elseif ($email == "mindfire@email.com" && $password == "mindfire") {
+	     	$token = JWT::encode(['id' => 1, 'email' => "abc"], $this->settings['jwt']['secret'], "HS256");
 	    	return $response->withJSON(['token' => $token], 200);
+	     } 
+		else {
+			return $response->withJSON(['error' => true, 'message' => 'Invalid Email or Password.'], 200);
 		}
-		return $response->withJSON(['error' => true, 'message' => 'Invalid Email or Password.'], 200);
 	}
 }
