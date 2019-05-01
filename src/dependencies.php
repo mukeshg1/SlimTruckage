@@ -38,6 +38,6 @@ $container['RegisterController'] = function ($c) {
 $container['LoginController'] = function ($c) {
     return new src\Truckage\Controllers\LoginController($c);
 };
-$container['LoginService'] = function ($c) {
-    return new src\Truckage\Services\LoginService($c);
+$container['viewTrucks'] = function ($c) {
+    return new src\Truckage\Controllers\viewTrucks($c);
 };

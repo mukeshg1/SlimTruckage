@@ -7,28 +7,38 @@ use Slim\Http\Response;
 
 class RegisterController extends BaseController
 {
-	public function register(Request $request, Response $response)
+	public function userRegister(Request $request, Response $response)
 	{
-		// return 'Mukesh';
 		// Fetching filemaker connection from container 'db'
 		$fm = $this->container->get('db');
+		// $settings = $this->container->get('responseMessage');
 
-		// $this->logger->info("Slim-Skeleton '/' route");
+		$logger = $this->container->get('logger');
+		$logger->info("Truckage '/public/api/register' route");
 		
 		// Receiving values from Angular and assigning it to a variable
-		$name = $request->getParsedBody()['name'];
-		$usertype = $request->getParsedBody()['password'];
-		$mobile = $request->getParsedBody()['confirmPassword'];
+		$firstName = $request->getParsedBody()['firstName'];
+		$lastName = $request->getParsedBody()['lastName'];
 		$email = $request->getParsedBody()['email'];
+		$password = $request->getParsedBody()['password'];
+		$confirmPassword = $request->getParsedBody()['confirmPassword'];
+		$usertype = $request->getParsedBody()['userType'];
 		
-		// if ($name != '' && $usertype != '' && $mobile != '' && $email != '')
-		// {
+		if ( empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword) || empty($usertype))
+		{
+			return $response->withJSON(['error' => true, 'message' => 'Enter all the required fields.'], 201);
+		}
+		elseif ($password !== $confirmPassword) {
+			return $response->withJSON(['error' => true, 'message' => 'Password and confirmPassword donot match.'], 201);
+		}
+		else
+		{
 			$fmquery = $fm->newAddCommand("User");
-			$fmquery->setField("Name_xt", $name);
-			$fmquery->setField("UserType_xt", $usertype);
-			$fmquery->setField("Mobile_xt", $mobile);
+			$fmquery->setField("firstName_xt", $firstName);
+			$fmquery->setField("lastName_xt", $lastName);
 			$fmquery->setField("Email_xt", $email);
-		// }
+			$fmquery->setField("UserType_xt", $usertype);
+		}
 		$result = $fmquery->execute();
 		if($fm::isError($result))
 		{
@@ -38,7 +48,7 @@ class RegisterController extends BaseController
 		}
 		else
 		{
-			return $response->withJSON('Success', 201);
+			return $response->withJSON(['error' => false, 'message' => 'Registration Successful'], 201);
 		}
 		}
 }

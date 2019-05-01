@@ -14,7 +14,7 @@ class LoginController {
         $this->settings = $container->get('settings');
     }
 
-	public function Login($request, $response)    {
+	public function userLogin($request, $response)    {
 
 		$email = $request->getParsedBody()['username'];
 	    $password = $request->getParsedBody()['password'];
