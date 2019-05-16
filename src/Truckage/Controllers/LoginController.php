@@ -22,7 +22,7 @@ class LoginController {
 	    if (empty($email) or empty($password)) {
 	    	return $response->withJSON(['error' => true, 'message' => 'Enter your Email or Password.'], 200);
 	    }
-	    elseif ($email == "mindfire@email.com" && $password == "mindfire") {
+	    elseif ($email == "mindfire@email.com" && $password == "mindfire@123") {
 	     	$token = JWT::encode(['id' => 1, 'email' => "abc"], $this->settings['jwt']['secret'], "HS256");
 	    	return $response->withJSON(['token' => $token], 200);
 	     } 

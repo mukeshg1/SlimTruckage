@@ -18,7 +18,7 @@ return [
 
         // Database setting
         'db' => [
-            'host' => '172.16.9.42',
+            'host' => '172.16.8.192',
             'database' => 'TruckageDatabase',
             'username' => 'admin',
             'password' => 'mindfire',

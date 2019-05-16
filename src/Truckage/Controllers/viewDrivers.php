@@ -5,19 +5,17 @@ namespace src\Truckage\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class viewTrucks extends BaseController
+class viewDrivers extends BaseController
 {
-	public function viewTrucks(Request $request, Response $response)
+	public function viewDrivers(Request $request, Response $response)
 	{
-		// return $response->withJSON(['error' => true, 'message' =>'Error test.']);
-		// return $response->withJSON(['licenseNumber' => 'OD 35 A 8876', 'about' => 'Truck has completed over 200 trips.']);
-		// Fetching filemaker connection from container 'db'
+		// return $response->withJSON(['message'=>'test']);
 		$fm = $this->container->get('db');
-		$layout_name = "TRUCK";
+		$layout_name = "Driver";
 		// $settings = $this->container->get('responseMessage');
 
 		$logger = $this->container->get('logger');
-		$logger->info("Truckage '/public/api/viewTrucks' route");
+		$logger->info("Truckage '/public/api/viewDrivers' route");
 
 
 		$fmquery = $fm->newFindAllCommand($layout_name);
@@ -36,7 +34,7 @@ class viewTrucks extends BaseController
 		$arr2 = array();
 		$arr3 = array();
 		$arr4 = array();
-		$i = 0;
+		$arrayCounter1 = 0;
 	    foreach ($records as $record)
 	    {
 	    	$recid = $record->getRecordId();
@@ -50,16 +48,16 @@ class viewTrucks extends BaseController
 				$arr1 = array($field_name=>$field_value);
 				$arr2 = array_merge($arr2,$arr1);
 			}
-			$arr[$i] = array_merge($arr3,$arr2);
-			$i++;
+			$arr[$arrayCounter1] = array_merge($arr3,$arr2);
+			$arrayCounter1++;
 		}
 
 		// Multidimensional array creation.
-		for ($j=0; $j < $i; $j++) 
+		for ($arrayCounter2=0; $arrayCounter2 < $arrayCounter1; $arrayCounter2++) 
 		{ 
-			$arr4[$j] = $arr[$j];
+			$arr4[$arrayCounter2] = $arr[$arrayCounter2];
 		}
-		return $response->withJSON(['error' => false, 'trucks' => $arr4], 201);
+		return $response->withJSON(['error' => false, 'drivers' => $arr4], 201);
 		
 		
 	}

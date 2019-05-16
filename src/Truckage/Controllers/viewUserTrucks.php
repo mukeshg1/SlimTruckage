@@ -5,19 +5,16 @@ namespace src\Truckage\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class viewTrucks extends BaseController
+class viewUserTrucks extends BaseController
 {
-	public function viewTrucks(Request $request, Response $response)
+	public function viewUserTrucks(Request $request, Response $response)
 	{
-		// return $response->withJSON(['error' => true, 'message' =>'Error test.']);
-		// return $response->withJSON(['licenseNumber' => 'OD 35 A 8876', 'about' => 'Truck has completed over 200 trips.']);
-		// Fetching filemaker connection from container 'db'
 		$fm = $this->container->get('db');
 		$layout_name = "TRUCK";
 		// $settings = $this->container->get('responseMessage');
 
 		$logger = $this->container->get('logger');
-		$logger->info("Truckage '/public/api/viewTrucks' route");
+		$logger->info("Truckage '/public/api/viewUserTrucks' route");
 
 
 		$fmquery = $fm->newFindAllCommand($layout_name);

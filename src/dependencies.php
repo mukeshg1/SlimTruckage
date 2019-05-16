@@ -41,3 +41,11 @@ $container['LoginController'] = function ($c) {
 $container['viewTrucks'] = function ($c) {
     return new src\Truckage\Controllers\viewTrucks($c);
 };
+
+$container['viewUserTrucks'] = function ($c) {
+    return new src\Truckage\Controllers\viewUserTrucks($c);
+};
+
+$container['viewDrivers'] = function ($c) {
+    return new src\Truckage\Controllers\viewDrivers($c);
+};

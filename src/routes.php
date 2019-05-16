@@ -10,7 +10,13 @@ $app->post('/api/register', \RegisterController::class . ':userRegister');
 
 $app->post('/api/login', \LoginController::class . ':userLogin');
 
-$app->post('/api/viewtrucks', \viewTrucks::class . ':viewTrucks');
+$app->get('/api/viewTrucks', \viewTrucks::class . ':viewTrucks');
+
+$app->get('/api/viewUserTrucks', \viewUserTrucks::class . ':viewUserTrucks');
+
+$app->get('/api/viewTrips', \viewTrips::class . ':viewTrips');
+
+$app->get('/api/viewDrivers', \viewDrivers::class . ':viewDrivers');
 
 
 // Routes
